@@ -1,4 +1,4 @@
-//render individual workout routine (collection of exercises)
+//render individual workout
 
 //receives routine as a prop from WorkoutList.jsx
 
