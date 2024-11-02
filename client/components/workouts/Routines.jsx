@@ -53,12 +53,23 @@ const Routines = ({fetchUser, routines, user}) => {
   };
   ////////////////////////////////////////////////////
   //routine name edit handlers
-  const handleEditClick = () => {
+  const handleEditClick = (event) => {
+
+    event.preventDefault();
+    if (!selectedRoutine) {
+      alert('No routine selected or there are no routines to be selected for edit')
+      return;
+    }
       setIsEditing(true);
   };
 
-  const handleSaveClick = () => {
-      // Call the update function and pass the new name
+  const handleSaveClick = (event) => {
+    // Call the update function and pass the new name
+    event.preventDefault();
+    if (!selectedRoutine) {
+      console.warn("No routine selected to save.");
+      return;
+    }
       updateRoutineName();
       setIsEditing(false);
   };
