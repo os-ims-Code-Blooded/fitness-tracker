@@ -26,7 +26,17 @@ const WorkoutList = ({ workouts, fetchUser, user }) => {
         console.err("Failed to delete workout");
       });
   };
-  const saveRoutine = () => {
+  const saveRoutine = (event) => {
+    event.preventDefault();
+
+    if (!routineName.trim()) {
+      alert('Input field must not be empty!');
+      return;
+    } else if (workouts.length < 1) {
+        alert('No workouts in list to be added as a routine!');
+        return;
+    }
+
     axios.post('/user/routines/create', {routine_name: routineName, exercises: workouts})
     .then(() => {
       fetchUser();
@@ -78,7 +88,7 @@ const WorkoutList = ({ workouts, fetchUser, user }) => {
             }}
           />
         </FormControl>
-        <Button variant="text" onClick={() => saveRoutine()} sx={{color: 'black'}} className={classes.routineAdd}>Save Routine</Button>
+        <Button variant="text" onClick={(e) => saveRoutine(e)} sx={{color: 'black'}} className={classes.routineAdd}>Save Routine</Button>
       </Box>
       <Divider />
       <Box
